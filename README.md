@@ -1,14 +1,13 @@
 # CarND-Path-Planning-Project
 Self-Driving Car Engineer Nanodegree Program
 
-##Project Implementation
+### Project Implementation.
 
-###Path Planner
 This was implemented with a state machine with 3 states: moving straight, preparing to change lanes, and changing lanes.  The ego car starts in the moving straight state.
 
 ![alt text](state_machine.png "State Machine")
 
-The first step is to determine if we have a car close in front of the ego car, and at that point we transition to the preparing to change lane state.  In this state we continue to deccelerate while we wait for an opening in one of the lanes.  If an opending is available in the left and right lanes, we select the one with the biggest opening.  At this point we transition to the changing lane state.  Once we have entered the lane we transition to the moving straight state.
+The first step is to determine if we have a car close in front of the ego car, and at that point we transition to the preparing to change lane state.  In this state we continue to decelerate while we wait for an opening in one of the lanes.  If an opening is available in the left and right lanes, we select the one with the biggest opening.  At this point we transition to the changing lane state.  Once we have entered the lane we transition to the moving straight state.
 
 The path (set of waypoints) is generated using Frenet coordinates (the position in the lane and the distance along the lane).  The path starts with the existing path.  If there is no existing path, it created a 2 point path using the position and car orientation (since the path indicates its orientation).  A spline it used to interpolate the path.  We start with positions along road at 30m, 60m and 90m to generate the spline.  Then using that spline, we get points along the path up to our current goal (in this case 30m along path).  Since the time between each waypoint is 20ms, the distance between the waypoints indicates the velocity.  I ensure there is not too much jerk by only increasing/decreasing the reference velocity by 0.224m/s in each iteration (limiting acceleration).
 
