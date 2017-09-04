@@ -6,7 +6,7 @@ Self-Driving Car Engineer Nanodegree Program
 ###Path Planner
 This was implemented with a state machine with 3 states: moving straight, preparing to change lanes, and changing lanes.  The ego car starts in the moving straight state.
 
-![Alt text](state_machine.png_?raw=true "State Machine")
+![alt text](state_machine.png "State Machine")
 
 The first step is to determine if we have a car close in front of the ego car, and at that point we transition to the preparing to change lane state.  In this state we continue to deccelerate while we wait for an opening in one of the lanes.  If an opending is available in the left and right lanes, we select the one with the biggest opening.  At this point we transition to the changing lane state.  Once we have entered the lane we transition to the moving straight state.
 
